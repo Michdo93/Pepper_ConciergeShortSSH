@@ -233,6 +233,9 @@ public class BasicBehaviour implements MQTTSubscriberCallbackInterface {
             line = readLine();
             animatedSpeech.say(line);
             //animatedSpeech.say("^start(animations/Stand/Gestures/Thinking_4) Aber sie hört immer mit. Manchmal mache ich mir dann Sorgen um meine Privats-Fähre.^wait(animations/Stand/Gestures/Thinking_4)");
+            
+            mQTTConnectionManager.publishToItem("iKonferenz_Crestron_RoomView_Steuerung_Schalter", "ON");
+            
             Thread.sleep(1000);
             line = readLine();
             animatedSpeech.say(line);
@@ -267,6 +270,7 @@ public class BasicBehaviour implements MQTTSubscriberCallbackInterface {
            animatedSpeech.say(line);
            //animatedSpeech.say("^start(animations/Stand/Gestures/Excited_1)Cool, oder? ^wait(animations/Stand/Gestures/Excited_1)");
            */
+           
             line = readLine();
             animatedSpeech.say(line);
             //animatedSpeech.say("^start(animations/Stand/Gestures/Explain_8)Ja, das ist schon alles sehr beeindruckend! Aber besonders stolz bin ich auf unsere Studierenden.^wait(animations/Stand/Gestures/Explain_8)");
@@ -279,7 +283,8 @@ public class BasicBehaviour implements MQTTSubscriberCallbackInterface {
     }
     
     private void runGamingScene() throws IOException, SonosControllerException, InterruptedException, CallError {
-        log("Car Race"); 
+        log("Car Race");
+                
         line = readLine();
         animatedSpeech.say(line);
         //animatedSpeech.say("^start(Stand/Gestures/Excited_1) Eine Anwendung gefällt mir besonders gut, nämlich unser Autofahrer-Training. Hierbei kann ich immer prima entspannen. Ich zeige es Ihnen mal kurz ^wait(Stand/Gestures/Excited_1)");
@@ -291,7 +296,7 @@ public class BasicBehaviour implements MQTTSubscriberCallbackInterface {
             @Override
             public void run(){
                 System.out.println("Thread Running");
-
+                
                 String user = Constants.Config.SSH_USER;
                 String password = Constants.Config.SSH_PASSWORD;
                 String host = Constants.Config.SSH_HOST;
@@ -339,6 +344,9 @@ public class BasicBehaviour implements MQTTSubscriberCallbackInterface {
         animatedSpeech.say(line);
         //animatedSpeech.say("^start(animations/Stand/Gestures/Explain_2) Meine Güte, ganz schön aufregend – aber gut, dass das alles nur virtu-ell ist und nicht echt! ^wait(animations/Stand/Gestures/Explain_2)");
         line = readLine();
+        
+        mQTTConnectionManager.publishToItem("iKonferenz_Crestron_RoomView_Steuerung_Schalter", "OFF");
+        
         animatedSpeech.say(line);
         //animatedSpeech.say("^start(animations/Stand/Emotions/Positive/Happy_4)  Ach - ich liebe die Informatik – alles nur Software, da geht so schnell nichts kaputt! ^wait(animations/Stand/Emotions/Positive/Happy_4)");
               
